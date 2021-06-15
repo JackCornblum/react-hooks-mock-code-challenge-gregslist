@@ -6,7 +6,7 @@ function App() {
   const [listingItems, setListingItems] = useState([])
   const [reload, setReload] = useState(false)
   const [searchValue, setSearchValue] = useState("")
-  const [filteredItems, setFilteredItems] = useState([])
+  // const [filteredItems, setFilteredItems] = useState([])
 
   useEffect(() => {
     fetch("http://localhost:6001/listings")
@@ -31,12 +31,15 @@ function App() {
   }
 
   function filterCards(parameter) {
-    setListingItems(
-      listingItems.filter((items) => {
-        return items.description.toLowerCase().includes(searchValue.toLowerCase())
-      })
-    )
-    
+    if (searchValue === ""){
+      setReload(!reload)
+    }
+    let filteredItems = listingItems.filter((items) => {
+      return items.description.toLowerCase().includes(searchValue.toLowerCase())
+    })
+
+    setListingItems(filteredItems)
+      
   }
   
   

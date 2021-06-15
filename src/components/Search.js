@@ -10,6 +10,7 @@ function Search({searchValue, setSearchValue, filterCards}) {
 
   function handleChange(e) {
     setSearchValue(e.target.value)
+    filterCards()
   }
 
   return (
